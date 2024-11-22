@@ -1,3 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.HasConfigurableKotlinCompilerOptions
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.ksp) apply false
@@ -14,9 +19,48 @@ plugins {
 allprojects {
     configurations.all {
         resolutionStrategy {
-            force("org.jetbrains.kotlin:kotlin-test:2.2.21")
-            force("org.jetbrains.kotlin:kotlin-test-common:2.2.21")
-            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.2.21")
+            val kotlin_version: String? by project
+            val defaultKotlinVersion = kotlin_version ?: "2.2.21"
+            force("org.jetbrains.kotlin:kotlin-test:$defaultKotlinVersion")
+            force("org.jetbrains.kotlin:kotlin-test-common:$defaultKotlinVersion")
+            force("org.jetbrains.kotlin:kotlin-test-annotations-common:$defaultKotlinVersion")
+        }
+    }
+}
+
+fun HasConfigurableKotlinCompilerOptions<*>.configureCompilerOptions() {
+    compilerOptions {
+        val kotlin_api_version: String? by project
+        val kotlin_language_version: String? by project
+
+        kotlin_language_version?.let {
+            println("[${project.name}] Custom LanguageVersion: $it")
+            languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.fromVersion(it))
+        }
+
+        kotlin_api_version?.let {
+            println("[${project.name}] Custom ApiVersion: $it")
+            apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.fromVersion(it))
+        }
+
+        freeCompilerArgs.add("-Xpartial-linkage-loglevel=ERROR")
+    }
+}
+
+subprojects {
+    pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+        configure<KotlinJvmExtension> {
+            configureCompilerOptions()
+        }
+    }
+    pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
+        configure<KotlinMultiplatformExtension> {
+            configureCompilerOptions()
+        }
+    }
+    pluginManager.withPlugin("org.jetbrains.kotlin.android") {
+        configure<KotlinAndroidExtension> {
+            configureCompilerOptions()
         }
     }
 }

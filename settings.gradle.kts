@@ -7,6 +7,9 @@ pluginManagement {
             maven {
                 url = uri("https://androidx.dev/snapshots/builds/14417026/artifacts/repository")
             }
+
+            val kotlin_repo_url: String? by settings
+            kotlin_repo_url?.let { maven(it) }
         }
     }
 
@@ -28,3 +31,19 @@ include(":compose-web")
 include(":common")
 include(":backend")
 include(":mcp-server")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            val kotlin_version: String? = settings.providers.gradleProperty("kotlin_version").orNull
+            if (kotlin_version != null) {
+                version("kotlin", kotlin_version)
+            }
+
+            val ksp_version: String? = settings.providers.gradleProperty("ksp_version").orNull
+            if (ksp_version != null) {
+                version("ksp", ksp_version)
+            }
+        }
+    }
+}
