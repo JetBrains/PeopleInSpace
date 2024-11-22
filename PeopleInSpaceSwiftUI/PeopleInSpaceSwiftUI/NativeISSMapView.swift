@@ -7,20 +7,20 @@ struct NativeISSMapView : View {
     
     var body: some View {
         VStack {
-            Observing(viewModel.position) { issPosition in
-                let issCoordinatePosition = CLLocationCoordinate2D(latitude: issPosition.latitude, longitude: issPosition.longitude)
-                let regionBinding = Binding<MKCoordinateRegion>(
-                    get: {
-                        MKCoordinateRegion(center: issCoordinatePosition, span: MKCoordinateSpan(latitudeDelta: 150, longitudeDelta: 150))
-                    },
-                    set: { _ in }
-                )
-
-                Map(coordinateRegion: regionBinding, showsUserLocation: true,
-                    annotationItems: [ Location(coordinate: issCoordinatePosition) ]) { (location) -> MapPin in
-                    MapPin(coordinate: location.coordinate)
-                }
-            }
+//             Observing(viewModel.position) { issPosition in
+//                 let issCoordinatePosition = CLLocationCoordinate2D(latitude: issPosition.latitude, longitude: issPosition.longitude)
+//                 let regionBinding = Binding<MKCoordinateRegion>(
+//                     get: {
+//                         MKCoordinateRegion(center: issCoordinatePosition, span: MKCoordinateSpan(latitudeDelta: 150, longitudeDelta: 150))
+//                     },
+//                     set: { _ in }
+//                 )
+//
+//                 Map(coordinateRegion: regionBinding, showsUserLocation: true,
+//                     annotationItems: [ Location(coordinate: issCoordinatePosition) ]) { (location) -> MapPin in
+//                     MapPin(coordinate: location.coordinate)
+//                 }
+//             }
         }
     }
 }
