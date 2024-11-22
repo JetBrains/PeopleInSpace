@@ -7,6 +7,21 @@ pluginManagement {
             maven {
                 url = uri("https://androidx.dev/snapshots/builds/14637376/artifacts/repository")
             }
+
+            val kotlin_repo_url: String? by settings
+            val kotlin_version: String? by settings
+            val repoUrl = kotlin_repo_url
+            val kotlinVersion = kotlin_version
+            if (!repoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+                exclusiveContent {
+                    forRepository {
+                        maven(repoUrl)
+                    }
+                    filter {
+                        includeVersionByRegex("org\\.jetbrains\\.kotlin.*", ".*", kotlinVersion)
+                    }
+                }
+            }
         }
     }
 
@@ -28,3 +43,14 @@ include(":compose-web")
 include(":common")
 include(":backend")
 include(":mcp-server")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            val kotlin_version: String? = settings.providers.gradleProperty("kotlin_version").orNull
+            if (kotlin_version != null) {
+                version("kotlin", kotlin_version)
+            }
+        }
+    }
+}
