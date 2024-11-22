@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,16 @@
 		DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */; };
 		DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B629C6D82CF0C032000B933A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7555FF73242A565900829871 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7555FF7A242A565900829871;
+			remoteInfo = PeopleInSpaceSwiftUI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1A3AB6582A225F9000296F07 /* Embed Watch Content */ = {
@@ -61,9 +71,14 @@
 		7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B629C6D22CF0C032000B933A /* PeopleInSpaceSwiftUiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeopleInSpaceSwiftUiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeViewFactory.swift; sourceTree = "<group>"; };
 		DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeISSMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B629C6D32CF0C032000B933A /* PeopleInSpaceSwiftUiTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PeopleInSpaceSwiftUiTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1A3AB6652A2283BD00296F07 /* Frameworks */ = {
@@ -74,6 +89,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7555FF78242A565900829871 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B629C6CF2CF0C032000B933A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -95,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* PeopleInSpaceSwiftUI */,
+				B629C6D32CF0C032000B933A /* PeopleInSpaceSwiftUiTests */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
 			);
@@ -105,6 +128,7 @@
 			children = (
 				7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */,
 				1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */,
+				B629C6D22CF0C032000B933A /* PeopleInSpaceSwiftUiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,13 +203,36 @@
 			productReference = 7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B629C6D12CF0C032000B933A /* PeopleInSpaceSwiftUiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B629C6DC2CF0C032000B933A /* Build configuration list for PBXNativeTarget "PeopleInSpaceSwiftUiTests" */;
+			buildPhases = (
+				B629C6CE2CF0C032000B933A /* Sources */,
+				B629C6CF2CF0C032000B933A /* Frameworks */,
+				B629C6D02CF0C032000B933A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B629C6D92CF0C032000B933A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B629C6D32CF0C032000B933A /* PeopleInSpaceSwiftUiTests */,
+			);
+			name = PeopleInSpaceSwiftUiTests;
+			packageProductDependencies = (
+			);
+			productName = PeopleInSpaceSwiftUiTests;
+			productReference = B629C6D22CF0C032000B933A /* PeopleInSpaceSwiftUiTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
@@ -194,6 +241,10 @@
 					};
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					B629C6D12CF0C032000B933A = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 7555FF7A242A565900829871;
 					};
 				};
 			};
@@ -214,6 +265,7 @@
 			targets = (
 				7555FF7A242A565900829871 /* PeopleInSpaceSwiftUI */,
 				1A3AB6672A2283BD00296F07 /* PeopleInSpaceMac */,
+				B629C6D12CF0C032000B933A /* PeopleInSpaceSwiftUiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +284,13 @@
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B629C6D02CF0C032000B933A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +354,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B629C6CE2CF0C032000B933A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B629C6D92CF0C032000B933A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7555FF7A242A565900829871 /* PeopleInSpaceSwiftUI */;
+			targetProxy = B629C6D82CF0C032000B933A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1A3AB6752A2283BE00296F07 /* Debug */ = {
@@ -310,7 +384,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceMac/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)\n";
@@ -347,7 +421,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceMac/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)\n";
@@ -496,7 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,7 +605,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -556,6 +630,60 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B629C6DA2CF0C032000B933A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.jetbrains.qa.PeopleInSpaceSwiftUiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = PeopleInSpaceSwiftUI;
+				XROS_DEPLOYMENT_TARGET = 1.3;
+			};
+			name = Debug;
+		};
+		B629C6DB2CF0C032000B933A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.jetbrains.qa.PeopleInSpaceSwiftUiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = PeopleInSpaceSwiftUI;
+				XROS_DEPLOYMENT_TARGET = 1.3;
 			};
 			name = Release;
 		};
@@ -585,6 +713,15 @@
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,
 				7555FFA7242A565B00829871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B629C6DC2CF0C032000B933A /* Build configuration list for PBXNativeTarget "PeopleInSpaceSwiftUiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B629C6DA2CF0C032000B933A /* Debug */,
+				B629C6DB2CF0C032000B933A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
