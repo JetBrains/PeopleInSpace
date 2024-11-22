@@ -63,4 +63,21 @@ subprojects {
             configureCompilerOptions()
         }
     }
+
+//    tasks.withType(com.google.devtools.ksp.gradle.KspTaskNative::class.java).configureEach {
+//        val ksp_api_version: String? by project
+//        val ksp_language_version: String? by project
+//
+//        compilerOptions {
+//            ksp_language_version?.let {
+//                println("[${project.name}] Custom KSP LanguageVersion: $it")
+//                languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.fromVersion(it))
+//            }
+//
+//            ksp_api_version?.let {
+//                println("[${project.name}] Custom KSP ApiVersion: $it")
+//                apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.fromVersion(it))
+//            }
+//        }
+//    }
 }
