@@ -29,59 +29,59 @@ struct PeopleListScreen: View {
                 Color(.systemGroupedBackground)
                     .edgesIgnoringSafeArea(.all)
                 
-                Observing(viewModel.uiState) { playerListUIState in
-                    switch onEnum(of: playerListUIState) {
-                    case .loading:
-                        VStack(spacing: 16) {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                            Text("Loading astronauts...")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                        }
-                    case .error(let error):
-                        VStack(spacing: 16) {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.largeTitle)
-                                .foregroundColor(.orange)
-                            Text("Error: \(error)")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.center)
-                            
-                            Button(action: {
-                                // Refresh action
-                                viewModel = PersonListViewModel()
-                            }) {
-                                Label("Try Again", systemImage: "arrow.clockwise")
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                            }
-                        }
-                        .padding()
-                    case .success(let success):
-                        ScrollView {
-                            LazyVStack(spacing: 12) {
-                                ForEach(success.result, id: \.name) { person in
-                                    NavigationLink(value: person) {
-                                        PersonView(person: person)
-                                            .padding(.horizontal)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 12)
-                                                    .fill(Color(.systemBackground))
-                                                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
-                                            )
-                                            .padding(.horizontal)
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                }
-                            }
-                            .padding(.vertical)
-                        }
-                    }
-                }
+//                Observing(viewModel.uiState) { playerListUIState in
+//                    switch onEnum(of: playerListUIState) {
+//                    case .loading:
+//                        VStack(spacing: 16) {
+//                            ProgressView()
+//                                .progressViewStyle(CircularProgressViewStyle())
+//                            Text("Loading astronauts...")
+//                                .font(.headline)
+//                                .foregroundColor(.secondary)
+//                        }
+//                    case .error(let error):
+//                        VStack(spacing: 16) {
+//                            Image(systemName: "exclamationmark.triangle")
+//                                .font(.largeTitle)
+//                                .foregroundColor(.orange)
+//                            Text("Error: \(error)")
+//                                .font(.headline)
+//                                .foregroundColor(.primary)
+//                                .multilineTextAlignment(.center)
+//
+//                            Button(action: {
+//                                // Refresh action
+//                                viewModel = PersonListViewModel()
+//                            }) {
+//                                Label("Try Again", systemImage: "arrow.clockwise")
+//                                    .padding()
+//                                    .background(Color.blue)
+//                                    .foregroundColor(.white)
+//                                    .cornerRadius(8)
+//                            }
+//                        }
+//                        .padding()
+//                    case .success(let success):
+//                        ScrollView {
+//                            LazyVStack(spacing: 12) {
+//                                ForEach(success.result, id: \.name) { person in
+//                                    NavigationLink(value: person) {
+//                                        PersonView(person: person)
+//                                            .padding(.horizontal)
+//                                            .background(
+//                                                RoundedRectangle(cornerRadius: 12)
+//                                                    .fill(Color(.systemBackground))
+//                                                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+//                                            )
+//                                            .padding(.horizontal)
+//                                    }
+//                                    .buttonStyle(PlainButtonStyle())
+//                                }
+//                            }
+//                            .padding(.vertical)
+//                        }
+//                    }
+//                }
             }
             .navigationDestination(for: Assignment.self) { person in
                 PersonDetailsScreen(person: person)

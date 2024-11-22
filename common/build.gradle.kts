@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.skie)
+//    alias(libs.plugins.skie)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
@@ -144,11 +144,11 @@ kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
 
-skie {
-    features {
-        enableSwiftUIObservingPreview = true
-    }
-}
+//skie {
+//    features {
+//        enableSwiftUIObservingPreview = true
+//    }
+//}
 
 // KSP Tasks
 dependencies {
