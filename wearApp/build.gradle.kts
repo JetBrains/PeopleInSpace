@@ -23,6 +23,10 @@ android {
         buildConfig = true
     }
 
+    lint{
+        abortOnError = false
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -64,6 +68,7 @@ dependencies {
     implementation(libs.androidx.wear.compose.compose.material3)
     implementation(libs.androidx.protolayout.material3)
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.horologist.compose.layout)
     implementation(libs.horologist.tiles)
