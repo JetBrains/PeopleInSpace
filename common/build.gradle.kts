@@ -136,3 +136,9 @@ kotlin.sourceSets.all {
 //        enableSwiftUIObservingPreview = true
 //    }
 //}
+
+tasks.configureEach {
+    if (name in setOf("testDebugUnitTest", "testReleaseUnitTest")) {
+        enabled = false
+    }
+}

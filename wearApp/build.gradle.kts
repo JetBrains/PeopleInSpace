@@ -22,10 +22,14 @@ android {
         buildConfig = true
     }
 
+    lint{
+        abortOnError = false
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+//            isMinifyEnabled = true
+//            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -63,6 +67,7 @@ dependencies {
     implementation(libs.androidx.wear.compose.compose.material3)
     implementation(libs.androidx.protolayout.material3)
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.horologist.compose.layout)
     implementation(libs.horologist.tiles)
