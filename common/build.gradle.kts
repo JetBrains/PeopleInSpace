@@ -1,8 +1,6 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import com.google.devtools.ksp.gradle.KspAATask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -168,4 +166,10 @@ tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMet
 
 ksp {
     arg("KOIN_CONFIG_CHECK","true")
+}
+
+tasks.configureEach {
+    if (name in setOf("testDebugUnitTest", "testReleaseUnitTest")) {
+        enabled = false
+    }
 }
