@@ -24,14 +24,19 @@ android {
     namespace = "dev.johnoreilly.common"
 }
 
+val build_ios_x64: String? = project.properties["build_ios_x64"] as String?
+println("build_ios_x64: $build_ios_x64")
+
 kotlin {
     jvmToolchain(17)
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
+    buildList {
+        add(iosArm64())
+        add(iosSimulatorArm64())
+        if (build_ios_x64.toBoolean()) {
+            add(iosX64())
+        }
+    }.forEach {
         it.binaries.framework {
             baseName = "common"
         }
@@ -152,7 +157,9 @@ kotlin.sourceSets.all {
 dependencies {
     add("kspCommonMainMetadata", libs.koin.ksp.compiler)
     add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosX64", libs.koin.ksp.compiler)
+    if(build_ios_x64.toBoolean()){
+        add("kspIosX64", libs.koin.ksp.compiler)
+    }
     add("kspIosArm64", libs.koin.ksp.compiler)
     add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
     add("kspJvm", libs.koin.ksp.compiler)
