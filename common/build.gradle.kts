@@ -140,7 +140,12 @@ kotlin.sourceSets.all {
 //}
 
 tasks.configureEach {
-    if (name in setOf("testDebugUnitTest", "testReleaseUnitTest")) {
+    if (name in setOf(
+            "testDebugUnitTest",
+            "testReleaseUnitTest",
+            "linkReleaseFrameworkIosSimulatorArm64"
+        )
+    ) {
         enabled = false
     }
 }
