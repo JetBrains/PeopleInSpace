@@ -112,4 +112,12 @@ subprojects {
             }
         }
     }
+
+    tasks.withType<Tar>{
+        duplicatesStrategy = DuplicatesStrategy.WARN
+    }
+
+    tasks.withType<Zip>{
+        duplicatesStrategy = DuplicatesStrategy.WARN
+    }
 }
