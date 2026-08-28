@@ -43,6 +43,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            // force version with fixed
+            // KT-88162 K/Wasm browser tests: "Uncaught SyntaxError: Cannot use 'import.meta' outside a module" in Kotlin 2.4.20-Beta1
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.9.1")
+
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.coroutines)
             api(libs.kotlinx.serialization)
