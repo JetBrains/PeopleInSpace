@@ -13,7 +13,6 @@ import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import org.koin.core.annotation.Single
 
 
 interface PeopleInSpaceRepositoryInterface {
@@ -26,7 +25,6 @@ interface PeopleInSpaceRepositoryInterface {
     suspend fun fetchAndStorePeople()
 }
 
-@Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,

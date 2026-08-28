@@ -6,27 +6,15 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.android.Android
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
-import org.koin.core.scope.Scope
+import org.koin.dsl.module
 
 actual class ContextWrapper(val context: Context)
 
-@Module
-actual class NativeModule {
-
-    @Single
-    actual fun providesContextWrapper(scope : Scope) : ContextWrapper = ContextWrapper(scope.get())
-
-    @Single
-    actual fun getHttpClientEngine(): HttpClientEngine = Android.create()
-
-
-    @Single
-    actual fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper {
-        val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), ctx.context, "peopleinspace.db")
-        return PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
+actual val nativeModule = module {
+    single { ContextWrapper(get()) }
+    single<HttpClientEngine> { Android.create() }
+    single {
+        val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), get<ContextWrapper>().context, "peopleinspace.db")
+        PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
-
 }
-

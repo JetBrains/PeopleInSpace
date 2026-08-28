@@ -1,6 +1,10 @@
 package dev.johnoreilly.common.di
 
 import app.cash.sqldelight.db.SqlDriver
+import dev.johnoreilly.common.remote.AstroviewerApi
+import dev.johnoreilly.common.remote.PeopleInSpaceApi
+import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import dev.johnoreilly.common.viewmodel.PersonListViewModel
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
@@ -13,23 +17,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.KoinApplication
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
-import org.koin.core.scope.Scope
+import org.koin.core.context.startKoin
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
+import org.koin.dsl.bind
+import org.koin.dsl.module
 import org.koin.mp.KoinPlatform
-import org.koin.plugin.module.dsl.startKoin
-
-@KoinApplication
-object KoinApp
 
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
-    startKoin<KoinApp> {
-        includes(appDeclaration)
+    startKoin {
+        appDeclaration?.invoke(this)
+        modules(commonModule(enableNetworkLogs), nativeModule)
     }
 
 // called by iOS etc
@@ -40,39 +40,24 @@ fun initKoin() = initKoin(enableNetworkLogs = false)
 fun personListViewModel(): PersonListViewModel = KoinPlatform.getKoin().get()
 fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
 
-@Configuration
-@Module(includes = [CommonModule::class])
-class AppModule
+fun commonModule(enableNetworkLogs: Boolean) = module {
+    single { Json { isLenient = true; ignoreUnknownKeys = true } }
+    single { createHttpClient(get(), get(), enableNetworkLogs) }
+    single { CoroutineScope(Dispatchers.Default + SupervisorJob()) }
 
-@Module(includes = [NativeModule::class])
-@ComponentScan("dev.johnoreilly.common")
-class CommonModule {
-    @Single
-    fun json() = Json { isLenient = true; ignoreUnknownKeys = true }
+    singleOf(::PeopleInSpaceApi)
+    singleOf(::AstroviewerApi)
+    singleOf(::PeopleInSpaceRepository) bind PeopleInSpaceRepositoryInterface::class
 
-    @Single
-    fun httpClient(httpClientEngine: HttpClientEngine, json : Json) = createHttpClient(httpClientEngine, json, true)
-
-    @Single
-    fun dispatcher() = CoroutineScope(Dispatchers.Default + SupervisorJob() )
+    viewModelOf(::PersonListViewModel)
+    viewModelOf(::ISSPositionViewModel)
 }
 
 class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)
 
 expect class ContextWrapper
 
-@Module
-expect class NativeModule() {
-
-    @Single
-    fun providesContextWrapper(scope : Scope) : ContextWrapper
-
-    @Single
-    fun getHttpClientEngine(): HttpClientEngine
-
-    @Single
-    fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper
-}
+expect val nativeModule: Module
 
 fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {

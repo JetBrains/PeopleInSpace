@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
 //    alias(libs.plugins.skie)
@@ -55,7 +54,6 @@ kotlin {
             api(libs.koin.core.viewmodel)
             implementation(libs.koin.compose.multiplatform)
             implementation(libs.koin.test)
-            api(libs.koin.annotations)
 
             api(libs.kermit)
 
