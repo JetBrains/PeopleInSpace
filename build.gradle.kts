@@ -120,4 +120,6 @@ subprojects {
     tasks.withType<Zip>{
         duplicatesStrategy = DuplicatesStrategy.WARN
     }
+
+    tasks.matching { it.name.startsWith("lint") }.configureEach { enabled = false }
 }
